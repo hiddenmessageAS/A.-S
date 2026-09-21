@@ -7,39 +7,44 @@
     <style>
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-sizing: border-box;
             background: #f5f1ec;
             font-family: Arial, sans-serif;
             color: #333;
         }
         .contenedor {
-            width: 90%;
+            width: 100%;
             max-width: 500px;
             text-align: center;
             background: white;
             padding: 40px 25px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-sizing: border-box;
         }
         h1 {
-            font-size: 24px;
-            margin-bottom: 25px;
+            font-size: 23px;
+            line-height: 1.5;
+            font-weight: normal;
         }
         input {
-            width: 90%;
-            padding: 12px;
+            width: 100%;
+            max-width: 350px;
+            padding: 13px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            margin-bottom: 15px;
+            box-sizing: border-box;
+            margin: 15px 0;
             text-align: center;
         }
         button {
-            padding: 12px 25px;
+            padding: 13px 28px;
             font-size: 16px;
             border: none;
             border-radius: 8px;
@@ -47,62 +52,73 @@
             color: white;
             cursor: pointer;
         }
-        button:hover {
-            background: #555;
+        #error {
+            display: none;
+            color: #a00000;
+            margin-top: 15px;
         }
         #mensaje {
             display: none;
-            margin-top: 25px;
-            font-size: 18px;
+        }
+        #mensaje p {
+            font-size: 20px;
             line-height: 1.6;
         }
-        #error {
-            color: #b00020;
-            display: none;
-            margin-top: 10px;
+        .boton-pdf {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 28px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <div class="contenedor">
-        <div id="pregunta">
-            <h1>
-                Hubo un tiempo en que te decían igual que a la protagonista de una famosa trilogía.
-                ¿Cuál era ese nombre?
-            </h1>
-            <input 
-                type="text" 
-                id="respuesta" 
-                placeholder="Escribe tu respuesta"
-            >
-            <br>
-            <button onclick="comprobarRespuesta()">
-                Continuar
-            </button>
-            <p id="error">
-                Esa no es la respuesta. Inténtalo de nuevo.
-            </p>
-        </div>
-        <div id="mensaje">
-            <p>
-                ✨ Aquí aparecerá el mensaje que quieras mostrarle.
-            </p>
-        </div>
+<div class="contenedor">
+    <div id="pregunta">
+        <h1>
+            Hubo un tiempo en que te decían igual que a la protagonista
+            de una famosa trilogía. ¿Cuál era ese nombre?
+        </h1>
+        <input
+            type="text"
+            id="respuesta"
+            placeholder="Escribe tu respuesta"
+        >
+        <br>
+        <button onclick="comprobarRespuesta()">
+            Continuar
+        </button>
+        <p id="error">
+            Esa no es la respuesta. Inténtalo de nuevo.
+        </p>
     </div>
-    <script>
-        function comprobarRespuesta() {
-            const respuesta = document
-                .getElementById("respuesta")
-                .value
-                .trim()
-                .toLowerCase();
-            if (respuesta === "anastasia") {
-                document.getElementById("pregunta").style.display = "none";
-                document.getElementById("mensaje").style.display = "block";
-            } else {
-                document.getElementById("error").style.display = "block";
-            }
-        }
-    </script>
+    <div id="mensaje">
+        <p>
+            ✨ Has encontrado la respuesta.
+        </p>
+        <a class="boton-pdf" href="AS.pdf" target="_blank">
+            Abrir
+        </a>
+    </div>
+</div>
+<script>
+function comprobarRespuesta() {
+    const respuesta = document
+        .getElementById("respuesta")
+        .value
+        .trim()
+        .toLowerCase();
+    if (respuesta === "anastasia") {
+        document.getElementById("pregunta").style.display = "none";
+        document.getElementById("mensaje").style.display = "block";
+    } else {
+        document.getElementById("error").style.display = "block";
+    }
+}
+</script>
 </body>
 </html>
